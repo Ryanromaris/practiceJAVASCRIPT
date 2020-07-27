@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <style>
+        #container{
+            margin:auto;
+            width:400px;
+            height:600px;
+            border:1px black solid;
+            background-color:pink;
+            border-radius:5%;
+        }
+        input{
+            position:relative;
+            height:30px;
+            width:352px;
+            top:30px;
+            left:20px;
+        }
+        .buttons{
+            position:relative;
+            top:120px;
+            left:20px;
+        }
+        button{
+            display:inline-block;
+            width:60px;
+            height:60px;
+            margin:10px;
+        }
+    </style>
+
+
+
+</head>
+<body>
+    <div id="container">
+        <input id="input" type="text">
+
+        <div class="buttons">
+            <button id="one">1</button>
+            <button id="two">2</button>
+            <button id="three">3</button>
+            <button id="add">+</button>
+            <button id="four">4</button>
+            <button id="five">5</button>
+            <button id="six">6</button>
+            <button id="minus">-</button>
+            <button id="seven">7</button>
+            <button id="eight">8</button>
+            <button id="nine">9</button>
+            <button id="mutiple">X</button>
+            <button id="clear">c</button>
+            <button id="zero">0</button>
+            <button id="equal">=</button>
+            <button id="divide">%</button>
+        </div>
+    </div>
+
+<script>
+    document.querySelector('#clear').addEventListener('click',function(){
+            $("#input").val("");
+        })
+
+    function clicking(char) {
+        let display = $("#input").val().concat();
+        display = display.concat(char);
+        $("#input").val(display);
+    }
+
+    document.querySelector('#one').addEventListener('click',function(){
+        clicking(1);
+    })
+    document.querySelector('#two').addEventListener('click',function(){
+        clicking(2);
+    })
+    document.querySelector('#three').addEventListener('click',function(){
+        clicking(3);
+    })
+    document.querySelector('#four').addEventListener('click',function(){
+        clicking(4);
+    })
+    document.querySelector('#five').addEventListener('click',function(){
+        clicking(5);
+    })
+    document.querySelector('#six').addEventListener('click',function(){
+        clicking(6);
+    })
+    document.querySelector('#seven').addEventListener('click',function(){
+        clicking(7);
+    })
+    document.querySelector('#eight').addEventListener('click',function(){
+        clicking(8);
+    })
+    document.querySelector('#nine').addEventListener('click',function(){
+        clicking(9);
+    })
+    document.querySelector('#zero').addEventListener('click',function(){
+        clicking(0);
+    })
+    document.querySelector('#add').addEventListener('click',function(){
+        clicking('+');
+    })
+    document.querySelector('#minus').addEventListener('click',function(){
+        clicking('-');
+    })
+    document.querySelector('#mutiple').addEventListener('click',function(){
+        clicking('*');
+    })
+    document.querySelector('#divide').addEventListener('click',function(){
+        clicking('/');
+    })
+    document.querySelector('#equal').addEventListener('click',function(){
+        let display = $("#input").val();
+        $("#input").val(eval(display));
+    })
+
+    // function add(a,b){
+    //     return a+b;
+    // }
+    // function multiple(a,b){
+    //     return a*b;
+    // }
+    // function divide(a,b){
+    //     return a/b;
+    // }
+    // function minus(a,b){
+    //     return a-b;
+    // }
+    //
+    //
+    //
+    //
+    // function counter(word, ch){
+    //     let count = 0;
+    //     for(let i=0; i<word.length;i++){
+    //         if(word[i]===ch) {
+    //             count++;
+    //         }
+    //     }
+    //     return count++;
+    // }//*,%,+,-가 몇개인지 세어주는 함수!
+
+
+
+
+    //  document.querySelector('#equal').addEventListener('click',function(){
+    //      let display = $("#input").val();
+    //      let numMultiple = counter(display,'*');
+    //      if (numMultiple!==0){
+    //          for(let i=0;i<10;i++){
+    //              display.indexOf("*",i)-1;
+    //          }
+    //
+    //      }
+    //
+    // })
+    // function mult(){
+    //     let j=1;
+    //     let display = $("#input").val();
+    //     let k = counter(display,'*');
+    //     let splitted = display.split('*');
+    //     for (let i=1; i<=k; i++){
+    //         splitted.splice(j,0,'*')
+    //         j +=2;
+    //     }
+    // }
+    //
+    // function muti(){
+    //     mult();
+    //     splitted.split('+');
+    // }
+
+
+
+
+
+    </script>
+
+</body>
+</html>
