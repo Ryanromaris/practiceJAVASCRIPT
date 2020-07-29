@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rail API</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        // $(document).ready(function(){
+        //     showData();
+        // })
+
+        function showData(){
+            $("#depTime_namsung").empty();
+            let dayVal = $("#inputGroupSelect01").val();
+        $.ajax({
+          type: "GET",
+          url: `http://openapi.kric.go.kr/openapi/convenientInfo/stationTimetable?serviceKey=$2a$10$mXgjyq9cZMw0yXPzofIgJO529xKf.dfazqgEXLT9uHNnM3POVtfT2&format=json&railOprIsttCd=S5&lnCd=7&stinCd=738&dayCd=${dayVal}`,
+          data: {},
+          success: function(response){
+              let raw_data = response['body']
+              for (let i=0;i<raw_data.length;i++){
+                  if (!(raw_data[i]['tmnStinCd'] == "709" || raw_data[i]['tmnStinCd'] == "710" && raw_data[i]['orgStinCd'] != "738")) {
+                      continue;
+                  }
+                  let time = raw_data[i]['dptTm']
+                  time = changeTimeString(time);
+
+                  $("#depTime_namsung").append(`<p>${time}</p>`);
+
+              }
+              }
+        })
+        }
+
+        function changeTimeString(tim){
+            let hour = tim.substr(0,2);
+            let min = tim.substr(2,2);
+            let sec = tim.substr(4,2);
+            return hour + "시" + min + "분" + sec + "초";
+        }
+
+
+    </script>
+    <style>
+        #container{
+            width:100%;
+        }
+        #content{
+
+        }
+        #input_box{
+            width:300px;
+        }
+    </style>
+</head>
+<body>
+ <div id="container">
+     <div id="content">
+         <h1>숭실대입구역 열차 도착시간표</h1>
+         <h2>남성역 방면</h2>
+         <div id="input_box">
+             <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">요일</label>
+              </div>
+              <select class="custom-select" id="inputGroupSelect01">
+                <option selected>Choose...</option>
+                <option value="8">평일</option>
+                <option value="9">휴일</option>
+              </select>
+                 <button onclick="showData()" class="btn btn-outline-secondary" type="button">검색</button>
+            </div>
+<!--             요일선택-->
+         <div id="depTime_namsung">
+         </div>
+
+
+
+         </div>
+
+     </div>
+
+ </div>
+
+</body>
+</html>
